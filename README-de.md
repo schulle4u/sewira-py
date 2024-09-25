@@ -7,6 +7,8 @@ Ein Selfmade Wifi Radio.
 
 Wie einfach kann es sein, ein WLAN-Radio zu bauen, ohne auf Lötkolben, 3d-Drucker oder ein Informatikstudium angewiesen zu sein? Diese Frage habe ich mir gestellt und dabei ist dieses Projekt entstanden. Mein WLAN-Radio besteht aus einem Raspberry Pi mit Raspberry Pi OS Lite, dazu eine externe Soundkarte, ein Ziffernblock als Fernbedienung sowie ein beliebiger Aktivlautsprecher oder HiFi-Verstärker. SeWiRa ist die Softwarekomponente für das Radio, und kann beliebig eingesetzt werden. Es ist ein Programm für die Shell, welches aus einem Verzeichnis mit M3u-Dateien ein Sendermenü erstellt. Die einzelnen Sender werden nummeriert und lassen sich über den Ziffernblock ansteuern. Das Prinzip ähnelt alten Kurzwellenempfängern, bei denen man nur die richtige Frequenz eingeben musste. Das Radio kann daher völlig ohne einen Bildschirm genutzt werden, lediglich für das Bearbeiten der Senderliste ist natürlich ein Zugang notwendig. Auf die von normalen WLAN-Radios gewohnte Senderdatenbank mit tausenden von Programmen muss man allerdings verzichten, bekommt mit diesem Projekt aber ein zuverlässig funktionierendes Radio, das einem keine bösen Überraschungen bereitet, wenn der Portalbetreiber den Datenbankzugang abschaltet. Und sollte der Senderbetreiber seinen Stream ändern, ist es eine Frage von Minuten, die neue Adresse im Sendermenü zu hinterlegen. 
 
+Dies ist eine experimentelle Python-Version des ursprünglichen SeWiRa, welche eine bessere Konfiguration bietet, und nicht nur auf Linux/Unix-artigen Systemen lauffähig ist. Wer das Original bevorzugt, [hier ist das Bash-Script](https://github.com/schulle4u/sewira). 
+
 ## Einrichtung
 
 ### Voraussetzungen
