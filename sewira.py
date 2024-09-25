@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # SeWiRa - the Selfmade Wifi Radio
 # Copyright (c) 2024 Steffen Schultz
+import sys
 import os
 import subprocess
 import configparser
@@ -8,7 +9,10 @@ import gettext
 import locale
 
 # Determine current script directory
-scriptdir = os.path.dirname(os.path.abspath(__file__))
+if getattr(sys, 'frozen', False):
+    scriptdir = os.path.dirname(sys.executable)
+else:
+    scriptdir = os.path.dirname(os.path.abspath(__file__))
 
 # Load config file
 config = configparser.ConfigParser()
