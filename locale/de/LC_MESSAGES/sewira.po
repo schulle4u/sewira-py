@@ -1,0 +1,84 @@
+# SeWiRa
+# Copyright (C) 2024 Steffen Schultz
+# This file is distributed under the same license as the Sewira package.
+# Steffen Schultz <steffenschultz@mailbox.org>, 2024.
+msgid ""
+msgstr ""
+"Project-Id-Version: SeWiRa 0.1\n"
+"Report-Msgid-Bugs-To: steffenschultz@mailbox.org\n"
+"POT-Creation-Date: 2024-09-24 19:26+0200\n"
+"PO-Revision-Date: 2024-09-24 20:33+0200\n"
+"Last-Translator: Steffen Schultz <steffenschultz@mailbox.org>\n"
+"Language-Team: Steffen Schultz <steffenschultz@mailbox.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: sewira.py:31
+msgid "The entered directory could not be found."
+msgstr "Das angegebene Verzeichnis kann nicht gefunden werden."
+
+#: sewira.py:36
+msgid "Available streams:"
+msgstr "Verfügbare Streams:"
+
+#: sewira.py:39
+msgid "Exit"
+msgstr "Beenden"
+
+#: sewira.py:49
+#, python-format
+msgid "No valid stream in file %s."
+msgstr "Kein gültiger Stream in Datei %s."
+
+#: sewira.py:52
+#, python-format
+msgid "File %s not found."
+msgstr "Datei %s nicht gefunden."
+
+#: sewira.py:71
+#, python-format
+msgid "Opening stream with %s: %s"
+msgstr "Öffne Stream mit %s: %s"
+
+#: sewira.py:73
+#, python-format
+msgid "Error: The player %s cannot be found."
+msgstr "Fehler: Der Player %s kann nicht gefunden werden."
+
+#: sewira.py:75
+#, python-format
+msgid "An error occurred: %s"
+msgstr "Ein Fehler ist aufgetreten: %s"
+
+#: sewira.py:82
+msgid "This directory doesn't exist."
+msgstr "Dieses Verzeichnis existiert nicht."
+
+#: sewira.py:90
+msgid "No M3U files found."
+msgstr "Keine M3U-Dateien gefunden."
+
+#: sewira.py:96
+msgid "Program number (0 to exit): "
+msgstr "Sendernummer (0 zum Beenden): "
+
+#: sewira.py:99
+msgid "Bye!"
+msgstr "Tschüs!"
+
+#: sewira.py:112
+#, python-format
+msgid "No valid stream URL found in %s."
+msgstr "Keine gültige Stream-URL in %s gefunden."
+
+#: sewira.py:114
+msgid "Invalid selection."
+msgstr "Ungültige Auswahl."
+
+#: sewira.py:116
+msgid "Please enter a valid number."
+msgstr "Bitte gib eine gültige Nummer ein."
