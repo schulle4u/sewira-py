@@ -54,9 +54,10 @@ def list_m3u_files(directory):
 
 def print_menu(m3u_files):
     # Show the menu
-    print("SeWiRa\n" + _("Available streams:"))
+    print(f"{'SeWiRa':^40}")
+    print("\n" + _("Available streams:"))
     for idx, file in enumerate(m3u_files, start=1):
-        print(f"{idx}. {file}")
+        print(f"{idx}. {file}".removesuffix('.m3u'))
     print("0. " + _("Exit"))
 
 def get_stream_url(m3u_file):
