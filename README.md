@@ -27,7 +27,7 @@ This is an experimental Python port of SeWiRa. It is more customizable than the 
 
 ## Usage
 
-After calling `sewira.py` a menu with numbered stations appears. The desired channel is activated by typing the displayed number and pressing Enter. If a channel is not available, an error message is displayed. Press 0 to exit the menu. The channels are sorted by filename, usually alphabetically. By prefixing the filename with a number, you can influence the sorting like in a playlist. MPV is used by default for playback, but the player is only active in the background to keep the station menu open for the next input. It is therefore not possible to control the player itself. 
+After calling `sewira.py` a menu with numbered stations appears. The desired channel is activated by typing the displayed number and pressing Enter. If a channel is not available, an error message is displayed. Press 0 to exit the menu. The channels are sorted by filename, usually alphabetically. By prefixing the filename with a number, you can influence the sorting like in a playlist. Use the pattern `nnn-station.m3u` in your streams directory to automatically remove unwanted characters from the station list, where `nnn` is the prefixed number in your file name (up to 3 digits). MPV is used by default for playback, but the player is only active in the background to keep the station menu open for the next input. It is therefore not possible to control the player itself. 
 
 ## More information and similar projects
 

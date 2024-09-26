@@ -7,6 +7,7 @@ import subprocess
 import configparser
 import gettext
 import locale
+import re
 
 # Determine current script directory
 if getattr(sys, 'frozen', False):
@@ -57,7 +58,9 @@ def print_menu(m3u_files):
     print(f"{'SeWiRa':^40}")
     print("\n" + _("Available streams:"))
     for idx, file in enumerate(m3u_files, start=1):
-        print(f"{idx}. {file}".removesuffix('.m3u'))
+        clean_file = re.sub(r'^\d{0,3}-', '', file)
+        clean_file = clean_file.removesuffix('.m3u')
+        print(f"{idx}. {clean_file}")
     print("0. " + _("Exit"))
 
 def get_stream_url(m3u_file):
