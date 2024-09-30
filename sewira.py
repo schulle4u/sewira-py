@@ -24,6 +24,7 @@ player = config.get('Settings', 'player', fallback='mpv')
 player_options = config.get('Settings', 'player_options', fallback='--no-terminal')
 directory = config.get('Settings', 'directory', fallback=os.path.join(scriptdir, 'streams'))
 language = config.get('Settings', 'language', fallback='')
+debug = config.get('Settings', 'debug', fallback='0')
 
 # Setup l10n
 os.environ['LANG'] = language
@@ -87,13 +88,16 @@ def stop_previous_stream():
 def play_stream(url):
     global player_process
 
-    # Stop previous stream
+    # Stop previous stream, if any
     stop_previous_stream()
 
     # And start a new one
     try:
         player_process = subprocess.Popen([player, player_options, url], stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
-        print(_("Opening stream with %s: %s") % (player, url))
+        if debug == '1':
+            print(_("Opening stream with %s: %s") % (player, url))
+        else:
+            print(_("Playing..."))
     except FileNotFoundError:
         print("\a" + _("Error: The player %s cannot be found.") % player)
     except Exception as e:

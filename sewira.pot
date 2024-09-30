@@ -2,11 +2,12 @@
 # Copyright (C) 2024 Steffen Schultz
 # This file is distributed under the same license as the Sewira package.
 # Steffen Schultz <steffenschultz@mailbox.org>, 2024.
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: SeWiRa 0.1\n"
 "Report-Msgid-Bugs-To: steffenschultz@mailbox.org\n"
-"POT-Creation-Date: 2024-09-24 19:26+0200\n"
+"POT-Creation-Date: 2024-09-30 10:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Steffen Schultz <steffenschultz@mailbox.org>\n"
 "Language-Team: Steffen Schultz <steffenschultz@mailbox.org>\n"
@@ -15,69 +16,75 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.5\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: sewira.py\n"
 
-#: sewira.py:31
+#: sewira.py:54
 msgid "The entered directory could not be found."
 msgstr ""
 
-#: sewira.py:36
+#: sewira.py:60
 msgid "Available streams:"
 msgstr ""
 
-#: sewira.py:39
+#: sewira.py:65
 msgid "Exit"
-msgstr ""
-
-#: sewira.py:49
-#, python-format
-msgid "No valid stream in file %s."
-msgstr ""
-
-#: sewira.py:52
-#, python-format
-msgid "File %s not found."
-msgstr ""
-
-#: sewira.py:71
-#, python-format
-msgid "Opening stream with %s: %s"
-msgstr ""
-
-#: sewira.py:73
-#, python-format
-msgid "Error: The player %s cannot be found."
 msgstr ""
 
 #: sewira.py:75
 #, python-format
+msgid "No valid stream in file %s."
+msgstr ""
+
+#: sewira.py:78
+#, python-format
+msgid "File %s not found."
+msgstr ""
+
+#: sewira.py:98
+#, python-format
+msgid "Opening stream with %s: %s"
+msgstr ""
+
+#: sewira.py:100
+msgid "Playing..."
+msgstr ""
+
+#: sewira.py:102
+#, python-format
+msgid "Error: The player %s cannot be found."
+msgstr ""
+
+#: sewira.py:104
+#, python-format
 msgid "An error occurred: %s"
 msgstr ""
 
-#: sewira.py:82
+#: sewira.py:111
 msgid "This directory doesn't exist."
 msgstr ""
 
-#: sewira.py:90
+#: sewira.py:119
 msgid "No M3U files found."
 msgstr ""
 
-#: sewira.py:96
+#: sewira.py:125
 msgid "Program number (0 to exit): "
 msgstr ""
 
-#: sewira.py:99
+#: sewira.py:128
 msgid "Bye!"
 msgstr ""
 
-#: sewira.py:112
+#: sewira.py:141
 #, python-format
 msgid "No valid stream URL found in %s."
 msgstr ""
 
-#: sewira.py:114
+#: sewira.py:143
 msgid "Invalid selection."
 msgstr ""
 
-#: sewira.py:116
+#: sewira.py:145
 msgid "Please enter a valid number."
 msgstr ""
