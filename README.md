@@ -1,5 +1,3 @@
-<p align="right"><a href="README-de.md">Deutsch</a> &nbsp; <a href="README.md">English</a></p>
-
 # SeWiRa
 A self-made Wifi Radio.
 
@@ -18,7 +16,7 @@ This is an experimental Python port of SeWiRa. It is more customizable than the 
 
 ### Running from source
 
-* Clone or [Download this repository](https://github.com/schulle4u/sewira-py/archive/refs/heads/main.zip) into any folder, e.g. `/home/username/sewira-py`.
+* Clone or download this repository into any folder, e.g. `/home/username/sewira-py`.
 * Install system and python requirements: `pip install python-gettext`
 * Some linux users might need to create a virtual environment first, or pass the `--break-system-packages` option to pip. 
 * Optional: Edit `sewira.ini` for other players or to change the streams directory and language.
