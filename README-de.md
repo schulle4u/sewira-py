@@ -1,4 +1,4 @@
-<p align="right"><a href="README-de.md">Deutsch</a> &nbsp; <a href="README.md">English</a></p>
+[Deutsch](/README-de.md) [English](/README.md)
 
 # SeWiRa
 Ein Selfmade Wifi Radio.
