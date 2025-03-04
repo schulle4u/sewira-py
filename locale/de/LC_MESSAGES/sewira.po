@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SeWiRa 0.1\n"
 "Report-Msgid-Bugs-To: steffenschultz@mailbox.org\n"
-"POT-Creation-Date: 2025-03-03 12:44+0100\n"
-"PO-Revision-Date: 2025-03-03 12:45+0100\n"
+"POT-Creation-Date: 2025-03-04 12:14+0100\n"
+"PO-Revision-Date: 2025-03-04 12:19+0100\n"
 "Last-Translator: Steffen Schultz <steffenschultz@mailbox.org>\n"
 "Language-Team: Steffen Schultz <steffenschultz@mailbox.org>\n"
 "Language: de\n"
@@ -17,94 +17,113 @@ msgstr ""
 "X-Generator: Poedit 3.5\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: sewira.py:84
+#: sewira.py:85
 msgid "Exiting..."
 msgstr "Beenden..."
 
-#: sewira.py:93
+#: sewira.py:94
 msgid "The entered directory could not be found."
 msgstr "Das angegebene Verzeichnis kann nicht gefunden werden."
 
-#: sewira.py:100
+#: sewira.py:101
 msgid "Available streams:"
 msgstr "Verfügbare Streams:"
 
-#: sewira.py:110
+#: sewira.py:111
 msgid "Exit"
 msgstr "Beenden"
 
-#: sewira.py:120
+#: sewira.py:121
 #, python-format
 msgid "No valid stream in file %s."
 msgstr "Kein gültiger Stream in Datei %s."
 
-#: sewira.py:123
+#: sewira.py:124
 #, python-format
 msgid "File %s not found."
 msgstr "Datei %s nicht gefunden."
 
-#: sewira.py:126
+#: sewira.py:127
 #, python-format
 msgid "Error reading file %s: %s"
 msgstr "Fehler beim Lesen der Datei %s: %s"
 
-#: sewira.py:144
+#: sewira.py:145
 #, python-format
 msgid "Error stopping player: %s"
 msgstr "Fehler beim Stoppen des Players: %s"
 
-#: sewira.py:157
+#: sewira.py:158
 #, python-format
 msgid "Running command: %s"
 msgstr "Befehl wird ausgeführt: %s"
 
-#: sewira.py:163
+#: sewira.py:164
 #, python-format
 msgid "Now playing: %s"
 msgstr "Wird abgespielt: %s"
 
-#: sewira.py:165
+#: sewira.py:166
 msgid "Playing..."
 msgstr "Abspielen..."
 
-#: sewira.py:168
+#: sewira.py:169
 #, python-format
 msgid "Error: The player %s cannot be found."
 msgstr "Fehler: Der Player %s kann nicht gefunden werden."
 
-#: sewira.py:170
+#: sewira.py:171
 #, python-format
 msgid "An error occurred: %s"
 msgstr "Ein Fehler ist aufgetreten: %s"
 
-#: sewira.py:176
+#: sewira.py:178
+msgid "No M3U files found for autoplay."
+msgstr "Keine M3U-Dateien für die automatische Wiedergabe gefunden."
+
+#: sewira.py:197
+#, python-format
+msgid "Autoplay failed: No valid stream URL found in %s."
+msgstr "Automatische Wiedergabe fehlgeschlagen: Keine gültige Stream-URL in %s gefunden."
+
+#: sewira.py:199
+#, python-format
+msgid "Autoplay failed: Invalid menu number %s."
+msgstr "Automatische Wiedergabe fehlgeschlagen: Ungültiger Menüeintrag %s."
+
+#: sewira.py:201
+#, python-format
+msgid "Autoplay failed: '%s' is not a valid menu number."
+msgstr "Automatische Wiedergabe fehlgeschlagen: '%s' ist keine gültige Nummer."
+
+#: sewira.py:207
 #, python-format
 msgid "Directory does not exist: %s"
 msgstr "Das Verzeichnis existiert nicht: %s"
 
-#: sewira.py:184
+#: sewira.py:218
 #, python-format
 msgid "No M3U files found in %s."
 msgstr "Keine M3U-Dateien im Verzeichnis %s."
 
-#: sewira.py:190
+#: sewira.py:224
 msgid "Program number (0 to exit): "
 msgstr "Sendernummer (0 zum Beenden): "
 
-#: sewira.py:193
+#: sewira.py:227
 msgid "Bye!"
 msgstr "Tschüs!"
 
-#: sewira.py:209
+#: sewira.py:243
 #, python-format
 msgid "No valid stream URL found in %s."
 msgstr "Keine gültige Stream-URL in %s gefunden."
 
-#: sewira.py:211
+#: sewira.py:245
 msgid "Invalid selection."
 msgstr "Ungültige Auswahl."
 
-#: sewira.py:213
+#: sewira.py:247
 msgid "Please enter a valid number."
 msgstr "Bitte gib eine gültige Nummer ein."
 

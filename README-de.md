@@ -1,5 +1,3 @@
-[Deutsch](/README-de.md) [English](/README.md)
-
 # SeWiRa
 Ein Selfmade Wifi Radio.
 
@@ -28,6 +26,19 @@ Dies ist eine experimentelle Python-Version des ursprünglichen SeWiRa, welche e
 ## Verwendung
 
 Nach dem Aufruf von `sewira.py` erscheint ein Menü mit nummerierten Sendern. Der gewünschte Sender wird durch Eingabe der dargestellten  Nummer und Enter aktiviert. Ist ein Sender nicht vorhanden, erfolgt eine entsprechende Fehlermeldung. Die ziffer 0 beendet das Menü. Die Sortierung der Sender erfolgt anhand des  Dateinamens, also in der Regel alphabetisch. Durch das Voranstellen einer Ziffer am Dateinamen kann die Sortierung wie in einer Playliste beeinflusst werden. Die Dateinamen sollten das Muster `nnn-Station.m3u` verwenden, damit unnötige Zeichen automatisch aus der Stationsliste entfernt werden können. Das Muster `nnn` entspricht hierbei der bis zu dreistelligen Indexnummer im Dateinamen. Für die Wiedergabe wird standardmäßig MPV verwendet, jedoch ist der Player nur im Hintergrund aktiv, damit das Sendermenü immer für die nächste Eingabe geöffnet bleiben kann. Eine Steuerung des Players ist daher nicht vorgesehen. 
+
+## Konfiguration
+
+Die folgenden Optionen sind in der Datei `sewira.ini` verfügbar: 
+
+`player` = das für die Streamwiedergabe zu verwendende Programm als absoluter Pfad oder Umgebungspfad (Standard: `mpv`)  
+`player_options` = eine durch Leerzeichen getrennte Liste von Optionen für den gewählten Player  
+`autoplay` = spiele automatisch einen der verfügbaren Streams bei Programmstart ab (Nummer des Menüeintrags)  
+`directory` = das Verzeichnis in welchem nach M3U-Dateien gesucht wird (Standard: `streams`)  
+`language` = überschreibt die automatische Erkennung der Programmsprache, normalerweise für Windows notwendig (Beispiel: `de_DE.UTF-8`)  
+`debug` = aktiviert eine ausführlichere Programmausgabe (Standard: false)
+
+Einige Optionen können auch als Kommandozeilenparameter übergeben werden. Starte sewira mit der Option `--help`, um alle verfügbaren Parameter anzuzeigen.
 
 ## Weitere Informationen und Projekte
 

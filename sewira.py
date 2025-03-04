@@ -41,6 +41,7 @@ class SeWiRa:
         # Read settings from config, fallback to default values
         self.player = config.get('Settings', 'player', fallback='mpv')
         self.player_options = config.get('Settings', 'player_options', fallback='--no-terminal')
+        self.autoplay = config.get('Settings', 'autoplay', fallback='')
         self.directory = Path(config.get('Settings', 'directory', 
                                         fallback=str(self.scriptdir / 'streams')))
         self.language = config.get('Settings', 'language', fallback='')
@@ -169,6 +170,36 @@ class SeWiRa:
         except Exception as e:
             print("\a" + self._("An error occurred: %s") % str(e))
 
+    def handle_autoplay(self):
+        """Handle autoplay functionality using menu number"""
+        m3u_files = self.list_m3u_files()
+        
+        if not m3u_files:
+            print(self._("No M3U files found for autoplay."))
+            return
+        
+        try:
+            # Convert autoplay value to integer
+            index = int(self.autoplay) - 1
+            
+            if 0 <= index < len(m3u_files):
+                m3u_file = m3u_files[index]
+                stream_url = self.get_stream_url(m3u_file)
+                
+                if stream_url:
+                    # Get clean name for display
+                    filename = m3u_file.name
+                    clean_name = re.sub(r'^\d{0,3}-', '', filename)
+                    clean_name = clean_name.removesuffix('.m3u')
+                    
+                    self.play_stream(stream_url, clean_name)
+                else:
+                    print(self._("Autoplay failed: No valid stream URL found in %s.") % m3u_file)
+            else:
+                print(self._("Autoplay failed: Invalid menu number %s.") % self.autoplay)
+        except ValueError:
+            print(self._("Autoplay failed: '%s' is not a valid menu number.") % self.autoplay)
+    
     def run(self):
         """Main application loop"""
         # Check if valid directory
@@ -176,6 +207,9 @@ class SeWiRa:
             print("\a" + self._("Directory does not exist: %s") % self.directory)
             return
 
+        if self.autoplay:
+            self.handle_autoplay()
+        
         # Main loop
         while True:
             m3u_files = self.list_m3u_files()
@@ -216,6 +250,7 @@ class SeWiRa:
 def parse_arguments():
     """Parse command line arguments"""
     parser = argparse.ArgumentParser(description='SeWiRa - Selfmade Wifi Radio')
+    parser.add_argument('-a', '--autoplay', help='Automatically play a stream at startup')
     parser.add_argument('-d', '--directory', help='Directory containing M3U files')
     parser.add_argument('-p', '--player', help='Media player executable')
     parser.add_argument('--debug', action='store_true', help='Enable debug output')
@@ -231,6 +266,8 @@ def main():
     app = SeWiRa()
     
     # Override settings with command line arguments if provided
+    if args.autoplay:
+        app.autoplay = args.autoplay
     if args.directory:
         app.directory = Path(args.directory)
     if args.player:

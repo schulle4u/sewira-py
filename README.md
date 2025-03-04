@@ -1,5 +1,3 @@
-[Deutsch](/README-de.md) [English](/README.md)
-
 # SeWiRa
 A self-made Wifi Radio.
 
@@ -28,6 +26,19 @@ This is an experimental Python port of SeWiRa. It is more customizable than the 
 ## Usage
 
 After calling `sewira.py` a menu with numbered stations appears. The desired channel is activated by typing the displayed number and pressing Enter. If a channel is not available, an error message is displayed. Press 0 to exit the menu. The channels are sorted by filename, usually alphabetically. By prefixing the filename with a number, you can influence the sorting like in a playlist. Use the pattern `nnn-station.m3u` in your streams directory to automatically remove unwanted characters from the station list, where `nnn` is the prefixed number in your file name (up to 3 digits). MPV is used by default for playback, but the player is only active in the background to keep the station menu open for the next input. It is therefore not possible to control the player itself. 
+
+## Configuration
+
+The following options are available in `sewira.ini`: 
+
+`player` = the program to use for stream playback as full or environment path (default: `mpv`)  
+`player_options` = a space-separated list of program options for the desired player  
+`autoplay` = automatically play one of the available streams at startup (menu number)  
+`directory` = the directory to look for M3U files (default: `streams`)  
+`language` = override automatic language detection, usually needed for windows (example: `de_DE.UTF-8`)  
+`debug` = activate a more verbose output (default: false)
+
+Some options are also available as command line parameter. Start sewira with the `--help` parameter to get a list of available commands.
 
 ## More information and similar projects
 
