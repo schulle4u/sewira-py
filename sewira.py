@@ -69,7 +69,6 @@ class SeWiRa:
                 locale.setlocale(locale.LC_ALL, '')
         except locale.Error as e:
             print(f"Warning: Locale {self.language} not available, falling back to system default.")
-            locale.setlocale(locale.LC_ALL, '')
 
         gettext.bindtextdomain('sewira', str(self.scriptdir / 'locale'))
         gettext.textdomain('sewira')
