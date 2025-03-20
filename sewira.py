@@ -36,16 +36,25 @@ class SeWiRa:
     def load_config(self):
         """Load configuration from file"""
         config = configparser.ConfigParser()
-        config.read(self.scriptdir / 'sewira.ini')
+        
+        try:
+            config.read(self.scriptdir / 'sewira.ini')
 
-        # Read settings from config, fallback to default values
-        self.player = config.get('Settings', 'player', fallback='mpv')
-        self.player_options = config.get('Settings', 'player_options', fallback='--no-terminal')
-        self.autoplay = config.get('Settings', 'autoplay', fallback='')
-        self.directory = Path(config.get('Settings', 'directory', 
-                                        fallback=str(self.scriptdir / 'streams')))
-        self.language = config.get('Settings', 'language', fallback='')
-        self.debug = config.getboolean('Settings', 'debug', fallback=False)
+            # Read settings from config, fallback to default values
+            self.player = config.get('Settings', 'player', fallback='mpv')
+            self.player_options = config.get('Settings', 'player_options', fallback='--no-terminal')
+            self.autoplay = config.get('Settings', 'autoplay', fallback='')
+            self.directory = Path(config.get('Settings', 'directory', 
+                                            fallback=str(self.scriptdir / 'streams')))
+            self.language = config.get('Settings', 'language', fallback='')
+            self.debug = config.getboolean('Settings', 'debug', fallback=False)
+
+        except configparser.NoSectionError as e:
+            print(f"Error: Configuration section not found: {e}")
+        except configparser.NoOptionError as e:
+            print(f"Error: Configuration option not found: {e}")
+        except Exception as e:
+            print(f"Unexpected error while loading config: {e}")
 
         # Validate directory
         if not self.directory.is_dir():
@@ -53,10 +62,10 @@ class SeWiRa:
             try:
                 self.directory.mkdir(parents=True, exist_ok=True)
             except PermissionError:
-                print("Error: Cannot create directory {self.directory}. Using script directory instead.")
+                print(f"Error: Cannot create directory {self.directory}. Using script directory instead.")
                 self.directory = self.scriptdir / 'streams'
                 self.directory.mkdir(exist_ok=True)
-
+    
     def setup_localization(self):
         """Setup localization settings"""
         if self.language:
@@ -155,9 +164,9 @@ class SeWiRa:
             
             if self.debug:
                 print(self._("Running command: %s") % " ".join(cmd))
-                self.player_process = subprocess.Popen(cmd, stderr=subprocess.DEVNULL)
+                self.player_process = subprocess.run(cmd, stderr=subprocess.DEVNULL)
             else:
-                self.player_process = subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
+                self.player_process = subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
                 
             if stream_name:
                 print(self._("Now playing: %s") % stream_name)
