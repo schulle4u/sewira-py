@@ -164,9 +164,9 @@ class SeWiRa:
             
             if self.debug:
                 print(self._("Running command: %s") % " ".join(cmd))
-                self.player_process = subprocess.run(cmd, stderr=subprocess.DEVNULL)
+                self.player_process = subprocess.Popen(cmd, stderr=subprocess.DEVNULL)
             else:
-                self.player_process = subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
+                self.player_process = subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
                 
             if stream_name:
                 print(self._("Now playing: %s") % stream_name)
