@@ -21,6 +21,10 @@ class SeWiRa:
         else:
             self.scriptdir = Path(__file__).parent.absolute()
 
+        # Set a nice title for windows users
+        if (os.name=="nt"):
+            os.system("title SeWiRa")
+
         # Load configuration
         self.load_config()
 
