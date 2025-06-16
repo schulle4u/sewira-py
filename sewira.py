@@ -194,8 +194,7 @@ class SeWiRa:
             cmd = [self.player] + self.player_options.split() + [url]
             
             display_message = ""
-            # self.player_process = subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
-                
+            
             if stream_name:
                 display_message = self._("Now playing: %(stream_name)s") % {'stream_name': stream_name}
             else:
