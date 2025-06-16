@@ -25,6 +25,9 @@ class SeWiRa:
         if (os.name=="nt"):
             os.system("title SeWiRa")
 
+        # Save all status messages
+        self.current_status_message = ""
+
         # Load configuration
         self.load_config()
 
@@ -36,6 +39,30 @@ class SeWiRa:
         
         # Setup signal handlers
         self.setup_signal_handlers()
+
+    def clear_console(self):
+        """Clears the console screen."""
+        os.system('cls' if os.name == 'nt' else 'clear')
+
+    def status_message(self, message, is_error=False, force_display=False):
+        """
+        Handles displaying and storing status messages.
+        
+        Args:
+            message (str): The message to display/store.
+            is_error (bool): True if this is an error message (adds '\a' and forces immediate display).
+            force_display (bool): True to force immediate display of the message, even if not an error.
+        """
+
+        # Terminal bell for error messages
+        if is_error:
+            message = "\a" + message 
+            
+        self.current_status_message = message # Save the message for later usage in the menu
+
+        # Print directly if error or force_display is True
+        if is_error or force_display:
+            print(message)
 
     def load_config(self):
         """Load configuration from file"""
@@ -130,13 +157,13 @@ class SeWiRa:
                     line = line.strip()
                     if line and not line.startswith('#'):
                         return line
-            print("\a" + self._("No valid stream in file %s.") % m3u_file)
+            self.status_message(self._("No valid stream in file %(file)s.") % {'file': m3u_file}, is_error=True)
             return None
         except FileNotFoundError:
-            print("\a" + self._("File %s not found.") % m3u_file)
+            self.status_message(self._("File %(file)s not found.") % {'file': m3u_file}, is_error=True)
             return None
         except Exception as e:
-            print("\a" + self._("Error reading file %s: %s") % (m3u_file, str(e)))
+            self.status_message(self._("Error reading file %(filename)s: %(error)s") % {'filename': m3u_file, 'error': str(e)}, is_error=True)
             return None
 
     def stop_stream(self):
@@ -154,7 +181,7 @@ class SeWiRa:
                     self.player_process.wait()
             except Exception as e:
                 if self.debug:
-                    print(self._("Error stopping player: %s") % str(e))
+                    print(self._("Error stopping player: %(error_message)s") % {'error_message': str(e)})
 
     def play_stream(self, url, stream_name=""):
         """Play a stream URL"""
@@ -166,21 +193,26 @@ class SeWiRa:
             # Split player options into a list for proper argument passing
             cmd = [self.player] + self.player_options.split() + [url]
             
-            if self.debug:
-                print(self._("Running command: %s") % " ".join(cmd))
-                self.player_process = subprocess.Popen(cmd, stderr=subprocess.DEVNULL)
-            else:
-                self.player_process = subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
+            display_message = ""
+            # self.player_process = subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
                 
             if stream_name:
-                print(self._("Now playing: %s") % stream_name)
+                display_message = self._("Now playing: %(stream_name)s") % {'stream_name': stream_name}
             else:
-                print(self._("Playing..."))
+                display_message = self._("Playing...")
                 
+            if self.debug:
+                command_message = self._("Running command: %(command)s") % {'command': " ".join(cmd)}
+                display_message = f"{display_message}\n{command_message}"
+            
+            self.status_message(display_message, force_display=True)
+            
+            self.player_process = subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
+
         except FileNotFoundError:
-            print("\a" + self._("Error: The player %s cannot be found.") % self.player)
+            self.status_message(self._("Error: The player %(player_name)s cannot be found.") % {'player_name': self.player})
         except Exception as e:
-            print("\a" + self._("An error occurred: %s") % str(e))
+            self.status_message(self._("An error occurred: %(error_message)s") % {'error_message': str(e)}, is_error=True)
 
     def handle_autoplay(self):
         """Handle autoplay functionality using menu number"""
@@ -206,37 +238,44 @@ class SeWiRa:
                     
                     self.play_stream(stream_url, clean_name)
                 else:
-                    print(self._("Autoplay failed: No valid stream URL found in %s.") % m3u_file)
+                    self.status_message(self._("Autoplay failed: No valid stream URL found in %(file)s.") % {'file': m3u_file}, is_error=True)
             else:
-                print(self._("Autoplay failed: Invalid menu number %s.") % self.autoplay)
+                self.status_message(self._("Autoplay failed: Invalid menu number %(number)s.") % {'number': self.autoplay}, is_error=True)
         except ValueError:
-            print(self._("Autoplay failed: '%s' is not a valid menu number.") % self.autoplay)
+            self.status_message(self._("Autoplay failed: '%(number)s' is not a valid menu number.") % {'number': self.autoplay}, is_error=True)
     
     def run(self):
         """Main application loop"""
         # Check if valid directory
         if not self.directory.is_dir():
-            print("\a" + self._("Directory does not exist: %s") % self.directory)
+            self.status_message(self._("Directory does not exist: %(directory)s") % {'directory': self.directory}, is_error=True)
             return
 
         if self.autoplay:
             self.handle_autoplay()
-        
+
         # Main loop
         while True:
             m3u_files = self.list_m3u_files()
             
             if not m3u_files:
-                print("\a" + self._("No M3U files found in %s.") % self.directory)
+                self.status_message(self._("No M3U files found in %(directory)s.") % {'directory': self.directory}, is_error=True)
                 return
             
+            self.clear_console()
+            
+            if self.current_status_message:
+                print(self.current_status_message)
+                print()
+
             self.print_menu(m3u_files)
             
             # Prompt for program number input
             choice = input(self._("Program number (0 to exit): "))
             
             if choice == '0':
-                print(self._("Bye!"))
+                self.clear_console()
+                self.status_message(self._("Bye!"), force_display=True)
                 self.stop_stream()  # Terminate player process
                 break
             
@@ -252,11 +291,11 @@ class SeWiRa:
                         
                         self.play_stream(stream_url, clean_name)
                     else:
-                        print("\a" + self._("No valid stream URL found in %s.") % m3u_file)
+                        self.status_message(self._("No valid stream URL found in %(file)s.") % {'file': m3u_file}, is_error=True)
                 else:
-                    print("\a" + self._("Invalid selection."))
+                    self.status_message(self._("Invalid selection."), is_error=True)
             except ValueError:
-                print("\a" + self._("Please enter a valid number."))
+                self.status_message(self._("Please enter a valid number."), is_error=True)
 
 
 def parse_arguments():
