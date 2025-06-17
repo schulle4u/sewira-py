@@ -201,7 +201,7 @@ class SeWiRa:
                 display_message = self._("Playing...")
                 
             if self.debug:
-                command_message = self._("Running command: %(command)s") % {'command': " ".join(cmd)}
+                command_message = self._("Command: %(command)s") % {'command': " ".join(cmd)}
                 display_message = f"{display_message}\n{command_message}"
             
             self.status_message(display_message, force_display=True)

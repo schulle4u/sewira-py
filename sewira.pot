@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SeWiRa 0.1\n"
 "Report-Msgid-Bugs-To: steffenschultz@mailbox.org\n"
-"POT-Creation-Date: 2025-06-16 19:14+0200\n"
+"POT-Creation-Date: 2025-06-17 10:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Steffen Schultz <steffenschultz@mailbox.org>\n"
 "Language-Team: Steffen Schultz <steffenschultz@mailbox.org>\n"
@@ -55,76 +55,76 @@ msgstr ""
 msgid "Error stopping player: %(error_message)s"
 msgstr ""
 
-#: sewira.py:200
+#: sewira.py:199
 #, python-format
 msgid "Now playing: %(stream_name)s"
 msgstr ""
 
-#: sewira.py:202
+#: sewira.py:201
 msgid "Playing..."
 msgstr ""
 
-#: sewira.py:205
+#: sewira.py:204
 #, python-format
-msgid "Running command: %(command)s"
+msgid "Command: %(command)s"
 msgstr ""
 
-#: sewira.py:213
+#: sewira.py:212
 #, python-format
 msgid "Error: The player %(player_name)s cannot be found."
 msgstr ""
 
-#: sewira.py:215
+#: sewira.py:214
 #, python-format
 msgid "An error occurred: %(error_message)s"
 msgstr ""
 
-#: sewira.py:222
+#: sewira.py:221
 msgid "No M3U files found for autoplay."
 msgstr ""
 
-#: sewira.py:241
+#: sewira.py:240
 #, python-format
 msgid "Autoplay failed: No valid stream URL found in %(file)s."
 msgstr ""
 
-#: sewira.py:243
+#: sewira.py:242
 #, python-format
 msgid "Autoplay failed: Invalid menu number %(number)s."
 msgstr ""
 
-#: sewira.py:245
+#: sewira.py:244
 #, python-format
 msgid "Autoplay failed: '%(number)s' is not a valid menu number."
 msgstr ""
 
-#: sewira.py:251
+#: sewira.py:250
 #, python-format
 msgid "Directory does not exist: %(directory)s"
 msgstr ""
 
-#: sewira.py:262
+#: sewira.py:261
 #, python-format
 msgid "No M3U files found in %(directory)s."
 msgstr ""
 
-#: sewira.py:274
+#: sewira.py:273
 msgid "Program number (0 to exit): "
 msgstr ""
 
-#: sewira.py:278
+#: sewira.py:277
 msgid "Bye!"
 msgstr ""
 
-#: sewira.py:294
+#: sewira.py:293
 #, python-format
 msgid "No valid stream URL found in %(file)s."
 msgstr ""
 
-#: sewira.py:296
+#: sewira.py:295
 msgid "Invalid selection."
 msgstr ""
 
-#: sewira.py:298
+#: sewira.py:297
 msgid "Please enter a valid number."
 msgstr ""
