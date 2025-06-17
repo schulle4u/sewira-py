@@ -209,7 +209,7 @@ class SeWiRa:
             self.player_process = subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
 
         except FileNotFoundError:
-            self.status_message(self._("Error: The player %(player_name)s cannot be found.") % {'player_name': self.player})
+            self.status_message(self._("Error: The player %(player_name)s cannot be found.") % {'player_name': self.player}, is_error=True)
         except Exception as e:
             self.status_message(self._("An error occurred: %(error_message)s") % {'error_message': str(e)}, is_error=True)
 
