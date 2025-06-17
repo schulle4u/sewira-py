@@ -262,12 +262,12 @@ class SeWiRa:
                 return
             
             self.clear_console()
-            
-            if self.current_status_message:
-                print(self.current_status_message)
-                print()
 
             self.print_menu(m3u_files)
+
+            if self.current_status_message:
+                print()
+                print(self.current_status_message)
             
             # Prompt for program number input
             choice = input(self._("Program number (0 to exit): "))
