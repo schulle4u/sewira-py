@@ -16,8 +16,8 @@ else:
     scriptdir = Path(__file__).parent.absolute()
 
 # Configuration
-url = 'https://nightly.link/mpv-player/mpv/workflows/build/master/mpv-x86_64-windows-msvc.zip'
-zip_filename = 'mpv-x86_64-windows-msvc.zip'
+url = 'https://nightly.link/mpv-player/mpv/workflows/build/master/mpv-x86_64-pc-windows-msvc.zip'
+zip_filename = 'mpv-x86_64-pc-windows-msvc.zip'
 mpv_filename = 'mpv.exe'
 
 # Check if MPV is already present before doing anything
