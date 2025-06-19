@@ -11,13 +11,13 @@ This is an experimental Python port of SeWiRa. It is more customizable than the 
 
 ### Requirements
 
-* Python3 with gettext support
-* [MPV](https://mpv.io/) for stream playback. Can be easily adjusted for other players, they only should be able to play radio streams. 
+* Python3 (built using v3.12, but should also run on any other Python3 installation)
+* [MPV](https://mpv.io/) for stream playback. Available on many operating systems, Windows users can run `download_mpv.py` to download a copy of `mpv.exe` into SeWiRa's directory. Can be easily adjusted for other players, they only should be able to play radio streams. 
 
 ### Running from source
 
 * Clone or download this repository into any folder, e.g. `/home/username/sewira-py`.
-* Install system and python requirements: `pip install python-gettext`
+* Install python requirements: `pip install -r requirements.txt`
 * Some linux users might need to create a virtual environment first, or pass the `--break-system-packages` option to pip. 
 * Optional: Edit `sewira.ini` for other players or to change the streams directory and language.
 * Add more M3U files to the streams directory. Only one URL per file is allowed. 

@@ -11,13 +11,13 @@ Dies ist eine experimentelle Python-Version des ursprünglichen SeWiRa, welche e
 
 ### Voraussetzungen
 
-* Python3 mit Gettext-Support
-* [MPV](https://mpv.io/) für die Wiedergabe der Streams. Der Player ist in den Paketquellen vieler Distributionen bereits vorhanden. Natürlich kann mit wenigen Handgriffen eine andere Software konfiguriert werden, sie sollte nur in der Lage sein, Radiostreams abzuspielen.
+* Python3 (erstellt mit Version 3.12, es sollte vermutlich auch mit allen anderen Python3-Installationen laufen)
+* [MPV](https://mpv.io/) für die Wiedergabe der Streams. Der Player ist in den Paketquellen vieler Distributionen bereits vorhanden, Windowsnutzer können `download_mpv.py` nutzen um die aktuellste `mpv.exe` in das SeWiRa-Verzeichnis herunterzuladen. Natürlich kann mit wenigen Handgriffen eine andere Software konfiguriert werden, sie sollte nur in der Lage sein, Radiostreams abzuspielen.
 
 ### Aus dem Quellcode starten
 
 * Das Repository clonen oder alle Dateien herunterladen und in einem beliebigen Ordner entpacken, z. B. nach `/home/Benutzer/sewira-py`. 
-* System- und Python-Abhängigkeiten installieren: `pip install python-gettext`
+* Python-Abhängigkeiten installieren: `pip install -r requirements.txt`
 * Linux-Nutzer müssen möglicherweise mit virtualenv arbeiten oder das Argument `--break-system-packages` an pip übergeben. 
 * Optional: `sewira.ini` anpassen, um den verwendeten Player, das Verzeichnis der Streams oder die Sprache zu ändern.
 * Weitere M3U-Dateien im Streams-Ordner ablegen. In jeder M3U-Datei sollte nur eine URL hinterlegt sein. 
