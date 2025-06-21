@@ -299,7 +299,7 @@ class SeWiRa:
 
 def parse_arguments():
     """Parse command line arguments"""
-    parser = argparse.ArgumentParser(description='SeWiRa - Selfmade Wifi Radio')
+    parser = argparse.ArgumentParser(description='Creates a station menu from a directory of m3u files.', epilog='Source code is available at https://github.com/schulle4u/sewira-py')
     parser.add_argument('-a', '--autoplay', help='Automatically play a stream at startup')
     parser.add_argument('-d', '--directory', help='Directory containing M3U files')
     parser.add_argument('-p', '--player', help='Media player executable')
