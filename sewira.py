@@ -99,16 +99,23 @@ class SeWiRa:
 
     def setup_localization(self):
         """Setup localization settings"""
-        if self.language:
-            os.environ['LANG'] = self.language
-
+        system_language = locale.getlocale()
         try:
             if self.language:
+                if os.name == 'nt': os.environ['LANG'] = self.language
                 locale.setlocale(locale.LC_ALL, self.language)
             else:
-                locale.setlocale(locale.LC_ALL, '')
-        except locale.Error:
-            self.status_message("Warning: Locale {self.language} not available, falling back to system default.", is_error=True)
+                if os.name == 'nt':
+                    os.environ['LANG'] = system_language[0] + '.utf8'
+                    locale.setlocale(locale.LC_ALL, system_language[0] + '.utf8')
+                else:
+                    locale.setlocale(locale.LC_ALL, '')
+        except locale.Error as e:
+            print(f"Warning: Error while setting locale: {e} Trying fallback to default 'C' locale.")
+            try:
+                locale.setlocale(locale.LC_ALL, 'C')
+            except locale.Error as e_fallback:
+                print(f"Error falling back to 'C' locale: {e_fallback}. Locale not set.")
 
         gettext.bindtextdomain('sewira', str(self.scriptdir / 'locale'))
         gettext.textdomain('sewira')
