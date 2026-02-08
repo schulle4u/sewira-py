@@ -17,11 +17,9 @@ Dies ist eine experimentelle Python-Version des ursprünglichen SeWiRa, welche e
 ### Aus dem Quellcode starten
 
 * Das Repository clonen oder alle Dateien herunterladen und in einem beliebigen Ordner entpacken, z. B. nach `/home/Benutzer/sewira-py`. 
-* Python-Abhängigkeiten installieren: `pip install -r requirements.txt`
-* Linux-Nutzer müssen möglicherweise mit virtualenv arbeiten oder das Argument `--break-system-packages` an pip übergeben. 
 * Optional: `sewira.ini` anpassen, um den verwendeten Player, das Verzeichnis der Streams oder die Sprache zu ändern.
 * Weitere M3U-Dateien im Streams-Ordner ablegen. In jeder M3U-Datei sollte nur eine URL hinterlegt sein. 
-* Script aufrufen: `python ./sewira.py`
+* Script aufrufen: `python ./run_sewira.py`
 
 ## Verwendung
 

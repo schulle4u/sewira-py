@@ -1,0 +1,39 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sewira"
+version = "1.0.0"
+description = "SeWiRa - the Selfmade Wifi Radio"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    { name = "Steffen Schultz" },
+]
+keywords = ["radio", "m3u", "mpv", "cli"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Multimedia :: Sound/Audio",
+]
+
+[project.optional-dependencies]
+download = ["requests", "tqdm"]
+
+[project.scripts]
+sewira = "sewira.app:main"
+download-mpv = "sewira.download_mpv:main"
+
+[project.urls]
+Homepage = "https://github.com/schulle4u/sewira-py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["sewira"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"sewira/locale" = "sewira/locale"

@@ -17,11 +17,9 @@ This is an experimental Python port of SeWiRa. It is more customizable than the 
 ### Running from source
 
 * Clone or download this repository into any folder, e.g. `/home/username/sewira-py`.
-* Install python requirements: `pip install -r requirements.txt`
-* Some linux users might need to create a virtual environment first, or pass the `--break-system-packages` option to pip. 
 * Optional: Edit `sewira.ini` for other players or to change the streams directory and language.
 * Add more M3U files to the streams directory. Only one URL per file is allowed. 
-* Run the script: `python ./sewira.py`
+* Run the script: `python ./run_sewira.py`
 
 ## Usage
 

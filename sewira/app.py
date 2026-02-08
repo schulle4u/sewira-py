@@ -15,11 +15,13 @@ from pathlib import Path
 
 class SeWiRa:
     def __init__(self):
-        # Determine current script directory
+        # Package directory (for locale and other package data)
         if getattr(sys, 'frozen', False):
-            self.scriptdir = Path(sys.executable).parent
+            self.package_dir = Path(sys._MEIPASS) / 'sewira'
+            self.basedir = Path(sys.executable).parent
         else:
-            self.scriptdir = Path(__file__).parent.absolute()
+            self.package_dir = Path(__file__).parent.absolute()
+            self.basedir = Path.cwd()
 
         # Set a nice title for windows users
         if (os.name == "nt"):
@@ -69,14 +71,14 @@ class SeWiRa:
         config = configparser.ConfigParser()
 
         try:
-            config.read(self.scriptdir / 'sewira.ini')
+            config.read(self.basedir / 'sewira.ini')
 
             # Read settings from config, fallback to default values
             self.player = config.get('Settings', 'player', fallback='mpv')
             self.player_options = config.get('Settings', 'player_options',
                                             fallback='--no-terminal')
             self.autoplay = config.get('Settings', 'autoplay', fallback='')
-            self.directory = Path(config.get('Settings', 'directory', fallback=str(self.scriptdir / 'streams')))
+            self.directory = Path(config.get('Settings', 'directory', fallback=str(self.basedir / 'streams')))
             self.language = config.get('Settings', 'language', fallback='')
             self.debug = config.getboolean('Settings', 'debug', fallback=False)
 
@@ -94,7 +96,7 @@ class SeWiRa:
                 self.directory.mkdir(parents=True, exist_ok=True)
             except PermissionError:
                 print(f"Error: Cannot create directory {self.directory}. Using script directory instead.")
-                self.directory = self.scriptdir / 'streams'
+                self.directory = self.basedir / 'streams'
                 self.directory.mkdir(exist_ok=True)
 
     def setup_localization(self):
@@ -117,7 +119,7 @@ class SeWiRa:
             except locale.Error as e_fallback:
                 print(f"Error falling back to 'C' locale: {e_fallback}. Locale not set.")
 
-        gettext.bindtextdomain('sewira', str(self.scriptdir / 'locale'))
+        gettext.bindtextdomain('sewira', str(self.package_dir / 'locale'))
         gettext.textdomain('sewira')
         self._ = gettext.gettext
 
