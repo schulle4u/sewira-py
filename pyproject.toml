@@ -23,12 +23,8 @@ classifiers = [
     "Topic :: Multimedia :: Sound/Audio",
 ]
 
-[project.optional-dependencies]
-download = ["requests", "tqdm"]
-
 [project.scripts]
 sewira = "sewira.app:main"
-download-mpv = "sewira.download_mpv:main"
 
 [project.urls]
 Homepage = "https://github.com/schulle4u/sewira-py"

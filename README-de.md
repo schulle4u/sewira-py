@@ -12,7 +12,7 @@ Dies ist eine experimentelle Python-Version des ursprünglichen SeWiRa, welche e
 ### Voraussetzungen
 
 * Python3 (erstellt mit Version 3.12, es sollte vermutlich auch mit allen anderen Python3-Installationen laufen)
-* [MPV](https://mpv.io/) für die Wiedergabe der Streams. Der Player ist in den Paketquellen vieler Distributionen bereits vorhanden, Windowsnutzer können `download_mpv.py` nutzen um die aktuellste `mpv.exe` in das SeWiRa-Verzeichnis herunterzuladen. Natürlich kann mit wenigen Handgriffen eine andere Software konfiguriert werden, sie sollte nur in der Lage sein, Radiostreams abzuspielen.
+* [MPV](https://mpv.io/) für die Wiedergabe der Streams. Der Player ist in den Paketquellen vieler Distributionen bereits vorhanden. Natürlich kann mit wenigen Handgriffen eine andere Software konfiguriert werden, sie sollte nur in der Lage sein, Radiostreams abzuspielen.
 
 ### Aus dem Quellcode starten
 

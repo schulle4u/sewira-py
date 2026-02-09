@@ -12,7 +12,7 @@ This is an experimental Python port of SeWiRa. It is more customizable than the 
 ### Requirements
 
 * Python3 (built using v3.12, but should also run on any other Python3 installation)
-* [MPV](https://mpv.io/) for stream playback. Available on many operating systems, Windows users can run `download_mpv.py` to download a copy of `mpv.exe` into SeWiRa's directory. Can be easily adjusted for other players, they only should be able to play radio streams. 
+* [MPV](https://mpv.io/) for stream playback. Available on many operating systems. Can be easily adjusted for other players, they only should be able to play radio streams. 
 
 ### Running from source
 
