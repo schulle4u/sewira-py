@@ -88,6 +88,9 @@ class SeWiRa:
             self.directory = Path(config.get('Settings', 'directory', fallback=str(self.basedir / 'streams')))
             self.language = config.get('Settings', 'language', fallback='')
             self.debug = config.getboolean('Settings', 'debug', fallback=False)
+            self.tts_voice = config.get('Settings', 'tts_voice', fallback='')
+            self.tts_rate = config.getint('Settings', 'tts_rate', fallback=0)
+            self.tts_volume = config.getfloat('Settings', 'tts_volume', fallback=-1)
 
         except configparser.NoSectionError as e:
             print(f"Error: Configuration section not found: {e}")
@@ -190,6 +193,25 @@ class SeWiRa:
             return
         try:
             engine = pyttsx3.init()
+
+            if self.tts_voice:
+                # Try substring match on voice name first
+                matched = False
+                for voice in engine.getProperty('voices'):
+                    if self.tts_voice.lower() in voice.name.lower():
+                        engine.setProperty('voice', voice.id)
+                        matched = True
+                        break
+                # Fall back to direct ID (covers espeak IDs like de+Max)
+                if not matched:
+                    engine.setProperty('voice', self.tts_voice)
+
+            if self.tts_rate > 0:
+                engine.setProperty('rate', self.tts_rate)
+
+            if 0 <= self.tts_volume <= 1:
+                engine.setProperty('volume', self.tts_volume)
+
             engine.say(text)
             engine.runAndWait()
             engine.stop()
