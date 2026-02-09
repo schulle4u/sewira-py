@@ -10,7 +10,13 @@ import locale
 import re
 import signal
 import argparse
+import threading
 from pathlib import Path
+
+try:
+    import pyttsx3
+except ImportError:
+    pyttsx3 = None
 
 
 class SeWiRa:
@@ -175,6 +181,21 @@ class SeWiRa:
             self.status_message(self._("Error reading file %(filename)s: %(error)s") % {'filename': m3u_file, 'error': str(e)}, is_error=True)
             return None
 
+    def speak(self, text):
+        """Announce text via text-to-speech using pyttsx3."""
+        if pyttsx3 is None:
+            if self.debug:
+                print("pyttsx3 is not installed, skipping speech output.")
+            return
+        try:
+            engine = pyttsx3.init()
+            engine.say(text)
+            engine.runAndWait()
+            engine.stop()
+        except Exception as e:
+            if self.debug:
+                print(self._("Error during speech output: %(error_message)s") % {'error_message': str(e)})
+
     def stop_stream(self):
         """Stop the currently playing stream"""
         if self.player_process and self.player_process.poll() is None:
@@ -192,35 +213,45 @@ class SeWiRa:
                 if self.debug:
                     print(self._("Error stopping player: %(error_message)s") % {'error_message': str(e)})
 
+    def _start_player(self, cmd):
+        """Start the player subprocess."""
+        try:
+            self.player_process = subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
+        except FileNotFoundError:
+            self.status_message(self._("Error: The player %(player_name)s cannot be found.") % {'player_name': self.player}, is_error=True)
+        except Exception as e:
+            self.status_message(self._("An error occurred: %(error_message)s") % {'error_message': str(e)}, is_error=True)
+
     def play_stream(self, url, stream_name=""):
         """Play a stream URL"""
         # Stop previous stream if any
         self.stop_stream()
 
-        # Start new stream
-        try:
-            # Split player options into a list for proper argument passing
-            cmd = [self.player] + self.player_options.split() + [url]
+        # Split player options into a list for proper argument passing
+        cmd = [self.player] + self.player_options.split() + [url]
 
-            display_message = ""
+        display_message = ""
 
-            if stream_name:
-                display_message = self._("Now playing: %(stream_name)s") % {'stream_name': stream_name}
-            else:
-                display_message = self._("Playing...")
+        if stream_name:
+            display_message = self._("Now playing: %(stream_name)s") % {'stream_name': stream_name}
+        else:
+            display_message = self._("Playing...")
 
-            if self.debug:
-                command_message = self._("Command: %(command)s") % {'command': " ".join(cmd)}
-                display_message = f"{display_message}\n{command_message}"
+        if self.debug:
+            command_message = self._("Command: %(command)s") % {'command': " ".join(cmd)}
+            display_message = f"{display_message}\n{command_message}"
 
-            self.status_message(display_message, force_display=True)
+        self.status_message(display_message, force_display=True)
 
-            self.player_process = subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
-
-        except FileNotFoundError:
-            self.status_message(self._("Error: The player %(player_name)s cannot be found.") % {'player_name': self.player}, is_error=True)
-        except Exception as e:
-            self.status_message(self._("An error occurred: %(error_message)s") % {'error_message': str(e)}, is_error=True)
+        if stream_name and pyttsx3 is not None:
+            # Speak first, then start player — both in background
+            def _speak_then_play():
+                self.speak(stream_name)
+                self._start_player(cmd)
+            thread = threading.Thread(target=_speak_then_play, daemon=True)
+            thread.start()
+        else:
+            self._start_player(cmd)
 
     def handle_autoplay(self):
         """Handle autoplay functionality using menu number"""

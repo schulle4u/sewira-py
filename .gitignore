@@ -41,6 +41,7 @@ env/
 .claude/
 CLAUDE.md
 sewira.ini
+mpv.exe
 
 # Logs
 *.log
