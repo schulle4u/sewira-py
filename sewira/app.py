@@ -44,6 +44,7 @@ class SeWiRa:
 
         # Player process
         self.player_process = None
+        self._play_generation = 0
 
         # Setup signal handlers
         self.setup_signal_handlers()
@@ -227,6 +228,10 @@ class SeWiRa:
         # Stop previous stream if any
         self.stop_stream()
 
+        # Invalidate any pending background thread
+        self._play_generation += 1
+        current_generation = self._play_generation
+
         # Split player options into a list for proper argument passing
         cmd = [self.player] + self.player_options.split() + [url]
 
@@ -247,6 +252,8 @@ class SeWiRa:
             # Speak first, then start player — both in background
             def _speak_then_play():
                 self.speak(stream_name)
+                if self._play_generation != current_generation:
+                    return
                 self._start_player(cmd)
             thread = threading.Thread(target=_speak_then_play, daemon=True)
             thread.start()
