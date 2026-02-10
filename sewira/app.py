@@ -88,6 +88,7 @@ class SeWiRa:
             self.directory = Path(config.get('Settings', 'directory', fallback=str(self.basedir / 'streams')))
             self.language = config.get('Settings', 'language', fallback='')
             self.debug = config.getboolean('Settings', 'debug', fallback=False)
+            self.tts_enabled = config.getboolean('Settings', 'tts_enabled', fallback=True)
             self.tts_voice = config.get('Settings', 'tts_voice', fallback='')
             self.tts_rate = config.getint('Settings', 'tts_rate', fallback=0)
             self.tts_volume = config.getfloat('Settings', 'tts_volume', fallback=-1)
@@ -187,9 +188,9 @@ class SeWiRa:
 
     def speak(self, text):
         """Announce text via text-to-speech using pyttsx3."""
-        if pyttsx3 is None:
+        if pyttsx3 is None or self.tts_enabled == False:
             if self.debug:
-                print("pyttsx3 is not installed, skipping speech output.")
+                print("pyttsx3 is not installed or has been disabled, skipping speech output.")
             return
         try:
             engine = pyttsx3.init()

@@ -12,13 +12,16 @@ autoplay=
 # The directory to look for M3U files.
 directory=streams
 
-# Uncomment to manually set the language for program messages, usually needed for Windows
+# Uncomment to manually set the language for program messages if automatic detection fails, usually needed for Windows
 #language=de_DE.UTF-8
 
 # Set to true for a more verbose output
 debug=False
 
 # TTS settings
+# If you are using a screen reader, you probably want to set this to false to disable extra station announcements
+tts_enabled=True
+
 # Enter a voice name, the program will try a substring match
 tts_voice=
 tts_rate=0
