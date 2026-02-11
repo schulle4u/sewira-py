@@ -188,7 +188,7 @@ class SeWiRa:
 
     def speak(self, text):
         """Announce text via text-to-speech using pyttsx3."""
-        if pyttsx3 is None or self.tts_enabled == False:
+        if pyttsx3 is None or self.tts_enabled is False:
             if self.debug:
                 print("pyttsx3 is not installed or has been disabled, skipping speech output.")
             return
