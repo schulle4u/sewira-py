@@ -37,6 +37,7 @@ The following options are available in `sewira.ini`:
 `language` = override automatic language detection, usually needed for windows (example: `de_DE.UTF-8`)  
 `debug` = activate a more verbose output (default: False)  
 `tts_enabled` = Enable station announcements (default: True)  
+`tts_engine` = Override automatic driver selection. Supported values depending on operation system: espeak, sapi5, nsss, or a custom pyttsx driver.  
 `tts_voice` = Enter an optional voice name, the program will try a substring match (Example: Zira)  
 `tts_rate` = Speech rate (Default: 0)  
 `tts_volume` = Speech volume (Default: -1)

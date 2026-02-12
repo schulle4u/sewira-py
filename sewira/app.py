@@ -89,6 +89,7 @@ class SeWiRa:
             self.language = config.get('Settings', 'language', fallback='')
             self.debug = config.getboolean('Settings', 'debug', fallback=False)
             self.tts_enabled = config.getboolean('Settings', 'tts_enabled', fallback=True)
+            self.tts_engine = config.get('Settings', 'tts_engine', fallback='')
             self.tts_voice = config.get('Settings', 'tts_voice', fallback='')
             self.tts_rate = config.getint('Settings', 'tts_rate', fallback=0)
             self.tts_volume = config.getfloat('Settings', 'tts_volume', fallback=-1)
@@ -193,7 +194,7 @@ class SeWiRa:
                 print("pyttsx3 is not installed or has been disabled, skipping speech output.")
             return
         try:
-            engine = pyttsx3.init()
+            engine = pyttsx3.init(self.tts_engine)
 
             if self.tts_voice:
                 # Try substring match on voice name first

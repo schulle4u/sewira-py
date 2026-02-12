@@ -37,6 +37,7 @@ Die folgenden Optionen sind in der Datei `sewira.ini` verfügbar:
 `language` = überschreibt die automatische Erkennung der Programmsprache, normalerweise für Windows notwendig (Beispiel: `de_DE.UTF-8`)  
 `debug` = aktiviert eine ausführlichere Programmausgabe (Standard: False)
 `tts_enabled` = Stationsansagen einschalten (Standard: True)  
+`tts_engine` = Überschreibt die automatische Treiberauswahl. Unterstützte Werte: espeak, sapi5, nsss oder ein benutzerdefinierter Pyttsx-Treiber.  
 `tts_voice` = Hier kann optional der Name einer Stimme eingegeben werden, das Programm versucht sie anhand des Substrings auszuwählen (Beispiel: Hedda)  
 `tts_rate` = Sprechgeschwindigkeit (Standard: 0)  
 `tts_volume` = Sprachlautstärke (Standard: -1)
